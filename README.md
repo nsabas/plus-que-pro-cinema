@@ -24,4 +24,8 @@ $ docker-compose up -d
 ```
 ## Usage
 
-After installation, you can run the backoffice on [localhost:8000](http://localhost:8000)
+After installation, you can run the backoffice on [localhost:8000/admin](http://localhost:8000/admin)
+
+### Credentials
+
+admin@admin.fr / admintest
