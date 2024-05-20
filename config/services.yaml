@@ -22,3 +22,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Manager\RequestManager:
+        arguments:
+            $client: '@themoviedb.client'
+
+    RequestManagerImage:
+        class: App\Manager\RequestManager
+        arguments:
+            $client: '@themoviedb.image.client'
+
+    App\API\Action\Image\ImageAction:
+        arguments:
+            $requestManager: '@RequestManagerImage'
+        tags: ['controller.service_arguments']
