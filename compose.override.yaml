@@ -1,8 +1,12 @@
 version: '3'
 
 services:
-###> doctrine/doctrine-bundle ###
+  php:
+    volumes:
+      - .:/var/www/symfony/
   database:
     ports:
       - "5432:5432"
-###< doctrine/doctrine-bundle ###
+  nginx:
+    ports:
+      - "8000:80"
