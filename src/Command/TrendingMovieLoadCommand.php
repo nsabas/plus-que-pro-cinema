@@ -6,6 +6,7 @@ use App\Entity\Movie;
 use App\Manager\RequestManager;
 use App\ServicePath\MovieRequest;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -21,17 +22,13 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class TrendingMovieLoadCommand extends Command
 {
-    private RequestManager $requestManager;
-    private EntityManagerInterface $entityManager;
-
     public function __construct(
-        RequestManager $requestManager,
-        EntityManagerInterface $entityManager
+        private RequestManager $requestManager,
+        private EntityManagerInterface $entityManager,
+        private LoggerInterface $logger
     )
     {
         parent::__construct();
-        $this->requestManager = $requestManager;
-        $this->entityManager = $entityManager;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -67,8 +64,8 @@ class TrendingMovieLoadCommand extends Command
                 $progressBar->advance();
             }
             $this->entityManager->flush();
-        } catch (\Exception) {
-            // log exception
+        } catch (\Exception $e) {
+            $this->logger->error('Loading movies error', ['message' => $e->getMessage()]);
             return Command::FAILURE;
         }
 
