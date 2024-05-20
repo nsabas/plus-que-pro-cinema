@@ -15,17 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 class MovieRequest
 {
     /**
-     * Get all Movies by genre or other filter
-     *
-     */
-    const GET_MOVIE_LIST = [
-        RequestManager::METHOD => Request::METHOD_GET,
-        RequestManager::PATH   => '/3/discover/movie',
-        RequestManager::MODEL  => MovieModel::class
-    ];
-
-    /**
-     * Get Movies top trending
+     * Get Movies top trending by week
      *
      */
     const GET_MOVIE_TOP_TRENDING_WEEK = [
