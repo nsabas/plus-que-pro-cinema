@@ -67,24 +67,10 @@ class TrendingMovieLoadCommand extends Command
                 $progressBar->advance();
             }
             $this->entityManager->flush();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             // log exception
-            dd($e);
             return Command::FAILURE;
         }
-
-//        $io = new SymfonyStyle($input, $output);
-//        $arg1 = $input->getArgument('arg1');
-//
-//        if ($arg1) {
-//            $io->note(sprintf('You passed an argument: %s', $arg1));
-//        }
-//
-//        if ($input->getOption('option1')) {
-//            // ...
-//        }
-//
-//        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 
         return Command::SUCCESS;
     }
