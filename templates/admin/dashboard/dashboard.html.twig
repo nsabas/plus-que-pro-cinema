@@ -2,6 +2,20 @@
 
 {% block main %}
 
-    <h1>lol</h1>
+    <h1>Movie trend</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                {% if movies is defined and movies %}
+                    {% for movie in movies %}
+                        {{ include('admin/dashboard/movies/components/movie_list_item.html.twig', { movie: movie }) }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            {#            {{ include('movies/components/pagination.html.twig', { list: movies }) }}#}
+        </div>
 
+    </div>
 {% endblock %}

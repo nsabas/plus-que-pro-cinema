@@ -1,0 +1,6 @@
+{% if field.value %}
+    <img src="{{ path('image.render', { name: field.value|trim('/'), size: constant('App\\ServicePath\\ImageRequest::LOGO_SIZE') }) }}" alt="">
+{% else %}
+    <img class="img-logo" width="92px" height="138px" src="{{ asset('images/images-not-found.png') }}" alt="">
+{% endif %}
+

@@ -1,0 +1,36 @@
+<div class="container film-item" data-movie-id="{{ movie.id }}">
+    <div class="row">
+        <div class="col-2">
+            {% if movie.posterUrl %}
+                <img src="{{ path('image.render', { name: movie.posterUrl|trim('/'), size: constant('App\\ServicePath\\ImageRequest::LOGO_SIZE') }) }}" alt="">
+            {% else %}
+                <img class="img-logo" src="{{ asset('build/images/images-not-found.png') }}" alt="">
+            {% endif %}
+        </div>
+        <div class="col-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col"><b>{{ movie.title }}</b></div>
+{#                    <div class="col rater"#}
+{#                            {{ stimulus_controller('rater')}}#}
+{#                         data-avg-rate="{{ movie.voteAverage }}"></div>#}
+{#                    <div class="col"#}
+{#                            {{ stimulus_target('buttonDetails', 'userCount') }}#}
+{#                    >(<span#}
+{#                                {{ stimulus_target('buttonDetails', 'userCount') }}#}
+{#                        >{{ movie.voteCount }}</span> votes)</div>#}
+                </div>
+{#                <div class="row">#}
+{#                    <div class="col">2016</div>#}
+{#                    <div class="col">Disney, PIXAR</div>#}
+{#                </div>#}
+                <div class="row">
+                    <p class="col">{{ movie.description }}</p>
+                </div>
+                <div class="row align-items-end">
+                    <a href="{{ path('movie.details', {id: movie.id}) }}" class="col-3 btn btn-primary">Lire les détails</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
